@@ -1,5 +1,6 @@
-angular.module('accountService', [])
-    .factory('accountRequest', function ($http) {
+var app = angular.module('accountService', []);
+
+app.factory('accountRequest', function ($http) {
         var path = "http://localhost:8080/springapp/account/";
 
         var myHeaders = {
