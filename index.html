@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>   
+
+    <script type="text/javascript" src="resources/angular-1.4.9/angular.js"></script>
+    <script type="text/javascript" src="resources/js/controllers/accountController.js"></script>    
+    <script type="text/javascript" src="resources/js/services/accountService.js"></script>
+
+    <style>
+        body{
+            margin: 0px;
+        }
+        .form{
+            background-color: rgb(69,70,90);
+            color: white;
+
+            padding: 15px 15px 15px 15px;
+            
+        }
+
+        .account{
+            margin: 15px;
+            padding: 0px;
+
+            display: inline-block;
+
+            width: 220px;
+
+            box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.28);
+        }
+        .account>div{
+            padding-left: 8px;
+        }
+        .account>a{
+            padding: 5px 0;
+            color: white;
+
+            text-align: center;
+            
+            display: inline-block;
+            width: 108px;            
+        }
+        .actualizar{
+            background-color: rgb(46, 204, 113);
+        }
+        .eliminar{
+            background-color: rgb(231, 76, 60);
+        }
+    </style>
+</head>
+<body ng-app="springapp" ng-controller="accountController">
+
+    <form class="form">     
+        <input id="id-account" type="text" ng-show="false">
+
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" ng-model="account.fullname">
+
+        <label for="username">Username</label>
+        <input id="username" type="text" ng-model="account.username">
+
+        <label for="pass">Contraseña</label>
+        <input id="pass" type="text" ng-model="account.pass">
+        <br>
+        <label for="email">Email</label>
+        <input id="email" type="text" ng-model="account.email">
+
+        <label for="website">Website</label>
+        <input id="website" type="text" ng-model="account.website">
+
+        <label for="edad">Edad</label>
+        <input id="edad" type="text" ng-model="account.age">
+
+        <br>
+        <div class="buttons">            
+            <button ng-click="save()">Guardar</button>
+            <button ng-click="cancel()">Cancelar</button>
+        </div>
+        
+    </form>    
+
+    <div class="dashboard">
+        <div class="account" ng-repeat="a in accounts">
+            <div>
+                <h2>{{ a.fullname }}</h5>
+                <h5>{{ a.email }}</h2>
+            </div>
+            <a class="actualizar" ng-click="update(a.id_account)">Actualizar</a>
+            <a class="eliminar" ng-click="delete(a.id_account)">Eliminar</a>
+        </div>
+    </div>
+</body>
+</html>
