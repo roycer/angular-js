@@ -2,7 +2,10 @@ var app = angular.module('mainService', []);
 
 app.factory('mainRequest', function ($http) {
 
-        var path = "http://localhost:8080/sigbook/publication/";
+        var path1 = "http://localhost:8080/sigbook/publication/";
+        var path2 = "http://localhost:8080/sigbook/friend/";
+        var path3 = "http://localhost:8080/sigbook/user/";
+
         var myHeaders = {
             'accept': 'application/json',
             'accept-encoding': 'gzip, deflate',
@@ -13,16 +16,25 @@ app.factory('mainRequest', function ($http) {
 
         return {            
             getMyPublication: function(user_id){
-                global = $http.get(path + user_id + "/getMyPublications");
+                global = $http.get(path1 + user_id + "/getMyPublications");
                 return global;
             },
             getFriendPublication: function (user_id) {
-                global = $http.get(path + user_id + "/getMyFriendsPublications");
+                global = $http.get(path1 + user_id + "/getMyFriendsPublications");
                 return global;
             },
             insertPublication: function (user_id, publication) {
                 var config = myHeaders;
-                global = $http.post(path + user_id + "/insert", publication, config);
+                global = $http.post(path1 + user_id + "/insert", publication, config);
+                return global;
+            },
+            getMyFriends: function(user_id){
+                global = $http.get(path3 + user_id + "/getMyFriends");
+                return global;
+            },
+            insertNewFriend(friend){
+                var config = myHeaders;
+                global = $http.post(path2 + "insert", friend, config);
                 return global;
             }
         }

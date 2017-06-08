@@ -48,17 +48,16 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../resources/img/profile.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">Roycer Cordova</span>
+              <img src="http://www.gravatar.com/avatar/{{user_email}}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{user_full_name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../resources/img/profile.png" class="img-circle" alt="User Image">
+                <img src="http://www.gravatar.com/avatar/{{user_email}}" class="img-circle" alt="User Image">
 
                 <p>
-                  Roycer Cordova
-                  <small>Member since Nov. 2012</small>
+                  {{user_full_name}}
                 </p>
               </li>
              
@@ -73,7 +72,6 @@
               </li>
             </ul>
           </li>
-
         </ul>
       </div>
     </nav>
@@ -88,10 +86,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../resources/img/profile.png" class="img-circle" alt="User Image">
+          <img src="http://www.gravatar.com/avatar/{{user_email}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Roycer Cordova</p>
+          <p>{{user_full_name}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -101,20 +99,20 @@
       <ul class="sidebar-menu">
         <li class="header">PRINCIPAL</li>
 
-        <li><a ng-click="actMyPublication()"><i class="fa fa-user"></i> <span>Mi Perfil</span></a></li>
+        <li><a ng-click="actMyPublication()"><i class="fa fa-user"></i> <span>Mi Muro</span></a></li>
         <li><a ng-click="actFriendPublication()"><i class="fa fa-television"></i> <span>Noticias</span></a></li>
         <li class="header">USUARIOS</li>
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form">
           <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Buscar...">
+            <input type="text" name="q" class="form-control" placeholder="Buscar..." ng-model="myNewFriend.friend_user_id">
                 <span class="input-group-btn">
-                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  <button  class="btn btn-flat" ng-click="insertNewFriend()"><i class="fa fa-search"></i>
                   </button>
                 </span>
           </div>
         </form>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Friends</span></a></li>
+        <li ng-repeat="myFriend in myFriends"><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>{{myFriend.user_username}}</span></a></li>
         <!-- search form -->
 
       </ul>
@@ -129,13 +127,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Blank page
-        <small>it all starts here</small>
+        {{ruta}}
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li class="active">{{ruta}}</li>
       </ol>
     </section>
 
@@ -169,7 +165,7 @@
       <!-- Default box -->
       <div class="box" ng-repeat="myPublication in myPublications">
         <div class="box-header with-border" >
-          <h3 class="box-title">{{myPublication.user_id}}</h3>
+          <h3 class="box-title">{{myPublication.user.user_fullname}}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -179,7 +175,6 @@
         </div>
         <div class="box-body">
         {{myPublication.publi_description}}
-          
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -187,6 +182,9 @@
         </div>
         <!-- /.box-footer-->
       </div>
+
+
+
       <!-- /.box -->
 
     </section>
