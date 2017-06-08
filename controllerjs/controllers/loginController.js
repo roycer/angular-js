@@ -1,6 +1,6 @@
-angular.module('sigbook', ['loginService', 'mainService']);
+angular.module('sigbook', ['loginService']);
 
-angular.module('sigbook').controller('loginController', ['$scope', '$window', 'loginRequest', 'mainRequest', loginController]);
+angular.module('sigbook').controller('loginController', ['$scope', '$window', 'loginRequest', loginController]);
 function loginController($scope, $window, loginRequest, mainRequest){
 	
 	$scope.user = {};
@@ -11,8 +11,6 @@ function loginController($scope, $window, loginRequest, mainRequest){
 		loginRequest.checkLogin($scope.user).success(function(data){
 						
 			if (data){
-				/*mainRequest.setId(data.user_id);*/
-				
 				$window.location.href = 'main.html';
 			}
 		});

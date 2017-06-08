@@ -1,11 +1,12 @@
-var app = angular.module('main_sigabook',['mainService']);
+var app = angular.module('sigabook',['mainService']);
 
 app.controller('mainController', ['$scope', 'mainRequest', mainController]);
 
 function mainController($scope,mainRequest){
 
-	var id = 1;
-	$scope.user_full_name = "Roycer Cordova";
+	var id = 2;
+	
+	$scope.user_full_name = "";
 	$scope.user_email = "7722b29d3b056e12ee620471726d6610";
 	
 	$scope.myPublications=[];
@@ -14,6 +15,12 @@ function mainController($scope,mainRequest){
 	$scope.myNewFriend={"user_id":id,"friend_user_id":0};
 	$scope.ruta="Mi Muro";
 	$scope.friend_username="";
+	
+	getUser = function (){
+		mainRequest.getUser(id).success(function(data){
+			$scope.user_full_name = data.user_fullname;
+		});
+	}
 	
 	getMyFriends = function(){
 		mainRequest.getMyFriends(id).success(function(data){
@@ -46,10 +53,9 @@ function mainController($scope,mainRequest){
 		mainRequest.insertNewFriend($scope.myNewFriend).success(function(data){
 	    	$scope.actFriendPublication();
 		});
-	}
-
-	
+	}	
 
 	$scope.actMyPublication();
+	getUser();
 	getMyFriends();
 }

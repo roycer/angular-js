@@ -1,7 +1,7 @@
 var app = angular.module('mainService', []);
 
 app.factory('mainRequest', function ($http) {
-
+	
         var path1 = "http://localhost:8080/sigbook/publication/";
         var path2 = "http://localhost:8080/sigbook/friend/";
         var path3 = "http://localhost:8080/sigbook/user/";
@@ -14,7 +14,11 @@ app.factory('mainRequest', function ($http) {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
         }
 
-        return {            
+        return {
+        	getUser: function(user_id){
+        		global = $http.get(path3 + user_id);
+        		return global;
+        	},
             getMyPublication: function(user_id){
                 global = $http.get(path1 + user_id + "/getMyPublications");
                 return global;
