@@ -1,6 +1,7 @@
-angular.module('springapp', ['accountService']);
+var app = angular.module('springapp', ['accountService']);
 
-angular.module('springapp').controller('accountController', ['$scope', 'accountRequest', accountController]);
+app.controller('accountController', ['$scope', 'accountRequest', accountController]);
+
 function accountController ($scope, accountRequest){
 
     var updateMode = false;
